@@ -41,10 +41,11 @@ for i in top_10:
 sorted_data = sorted(zip(num_tweets, top_10))
 num_tweets, top_10 = zip(*sorted_data)
 
+
 x = args.input_path.split('.')[1].upper()
 key = args.key.split('#')[1]
 plt.bar(top_10, num_tweets)
-plt.suptitle(f'Number of Tweets including {key} by {x}')
+plt.suptitle(f'Number of Tweets by {x}')
 plt.savefig(f'{key}_tweets_by_{x.lower()}.png')
 
 
