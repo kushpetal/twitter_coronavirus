@@ -41,7 +41,9 @@ for i in top_10:
 sorted_data = sorted(zip(num_tweets, top_10))
 y_data, x_data = zip(*sorted_data)
 
-
+print(x_data)
+print(y_data)
+iey = args.key.split('#')[1]
 x = args.input_path.split('.')[1].upper()
 key = args.key.split('#')[1]
 plt.bar(x_data, y_data)
