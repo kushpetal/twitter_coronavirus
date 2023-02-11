@@ -39,12 +39,12 @@ for i in top_10:
     num_tweets.append(hashmap[i])
 
 sorted_data = sorted(zip(num_tweets, top_10))
-num_tweets, top_10 = zip(*sorted_data)
+y_data, x_data = zip(*sorted_data)
 
 
 x = args.input_path.split('.')[1].upper()
 key = args.key.split('#')[1]
-plt.bar(top_10, num_tweets)
+plt.bar(x_data, y_data)
 plt.suptitle(f'Number of Tweets by {x}')
 plt.savefig(f'{key}_tweets_by_{x.lower()}.png')
 
