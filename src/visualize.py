@@ -12,6 +12,11 @@ args = parser.parse_args()
 import os
 import json
 from collections import Counter,defaultdict
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import heapq
+
 
 # open the input path
 with open(args.input_path) as f:
@@ -24,5 +29,21 @@ if args.percent:
 
 # print the count values
 items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
+hashmap = {}
 for k,v in items:
-    print(k,':',v)
+    hashmap[k] = v
+
+top_10 = heapq.nlargest(10, hashmap, key=hashmap.get)
+num_tweets = []
+for i in top_10:
+    num_tweets.append(hashmap[i])
+
+x = args.input_path.split('.')[1].upper()
+plt.bar(top_10, num_tweets)
+plt.suptitle(f'Number of Tweets by {x}')
+plt.savefig(f'{x.lower()}.png')
+
+
+
+
+
