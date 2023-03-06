@@ -16,7 +16,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import heapq
-
+import pandas as pd
 
 # open the input path
 with open(args.input_path) as f:
@@ -39,18 +39,22 @@ num_tweets = []
 for i in top_10:
     num_tweets.append(hashmap[i])
 
-# sort data from low to high
-sorted_data = sorted(zip(num_tweets, top_10))
-y_data, x_data = zip(*sorted_data)
+df = pd.DataFrame(
+    dict(
+        x_axis = top_10,
+        y_axis = num_tweets
+        )
+)
+
+df_sorted = df.sort_values('y_axis')
 
 # build bar chart
 x = args.input_path.split('.')[2].upper()
 key = args.key.split('#')[1]
-plt.bar(range(len(y_data)), y_data)
+plt.bar('x_axis', 'y_axis', data = df_sorted)
 plt.suptitle(f'Tweets including "{key}"')
 plt.xlabel(f'{x}')
 plt.ylabel("COUNT")
-plt.xticks(range(len(x_data)), x_data)  # set tick labels
 
 # save chart as png file
 plt.savefig(f'{key}_tweets_by_{x.lower()}.png')
