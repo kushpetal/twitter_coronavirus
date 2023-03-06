@@ -27,27 +27,32 @@ if args.percent:
     for k in counts[args.key]:
         counts[args.key][k] /= counts['_all'][k]
 
-# print the count values
+# store values in hashmap
 items = sorted(counts[args.key].items(), key=lambda item: (item[1],item[0]), reverse=True)
 hashmap = {}
 for k,v in items:
     hashmap[k] = v
 
+# get top 10 most tweeted countries/locations
 top_10 = heapq.nlargest(10, hashmap, key=hashmap.get)
 num_tweets = []
 for i in top_10:
     num_tweets.append(hashmap[i])
 
+# sort data from low to high
 sorted_data = sorted(zip(num_tweets, top_10))
 y_data, x_data = zip(*sorted_data)
 
-print(x_data)
-print(y_data)
-iey = args.key.split('#')[1]
-x = args.input_path.split('.')[1].upper()
+# build bar chart
+x = args.input_path.split('.')[2].upper()
 key = args.key.split('#')[1]
-plt.bar(x_data, y_data)
-plt.suptitle(f'Number of Tweets by {x}')
+plt.bar(range(len(y_data)), y_data)
+plt.suptitle(f'Tweets including "{key}"')
+plt.xlabel(f'{x}')
+plt.ylabel("COUNT")
+plt.xticks(range(len(x_data)), x_data)  # set tick labels
+
+# save chart as png file
 plt.savefig(f'{key}_tweets_by_{x.lower()}.png')
 
 
