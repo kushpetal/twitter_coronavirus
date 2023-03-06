@@ -14,6 +14,7 @@ import json
 from collections import Counter,defaultdict
 import matplotlib
 matplotlib.use('Agg')
+matplotlib.rc('font', family='Arial')
 import matplotlib.pyplot as plt
 import heapq
 import pandas as pd
