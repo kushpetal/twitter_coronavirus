@@ -16,7 +16,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-font = fm.FontProperties(fname='/home/kupatel/proj/twitter_coronavirus/NaverNanumSquareNeo/TTF/NanumSquareNeo-aLt.ttf')
+font = fm.FontProperties(fname='/home/kupatel/proj/twitter_coronavirus/fonts/NaverNanumSquareNeo/TTF/NanumSquareNeo-aLt.ttf')
 import heapq
 import pandas as pd
 
