@@ -40,22 +40,15 @@ num_tweets = []
 for i in top_10:
     num_tweets.append(hashmap[i])
 
-df = pd.DataFrame(
-    dict(
-        x_axis = top_10,
-        y_axis = num_tweets
-        )
-)
-
-df_sorted = df.sort_values('y_axis')
-
 # build bar chart
 x = args.input_path.split('.')[2].upper()
 key = args.key.split('#')[1]
-plt.bar('x_axis', 'y_axis', data = df_sorted)
-plt.suptitle(f'Tweets including "{key}"')
+
+plt.bar([i for i in range(len(top_10))], num_tweets)
+plt.suptitle(f'# of Tweets including "{key}" in 2020')
 plt.xlabel(f'{x}')
 plt.ylabel("COUNT")
+plt.xticks([i for i in range(len(top_10))], top_10)
 
 # save chart as png file
 plt.savefig(f'{key}_tweets_by_{x.lower()}.png')
