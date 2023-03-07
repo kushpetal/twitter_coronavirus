@@ -1,6 +1,6 @@
 # Coronavirus Twitter Analysis
 
-In this project, we scan all geotagged tweets sent in 2020 to monitor for the spread of coronavirus on social media. We filter our data by two queries (`#coronavirus` and `코로나바이러스`) and aggregate the top 10 _countries_ and _languages_ we see the tweets in.
+In this project, we scan all geotagged tweets sent in 2020 to monitor for the spread of coronavirus on social media. We filter our data by two queries (`#coronavirus` and `#코로나바이러스`) and aggregate the top 10 _countries_ and _languages_ we see the tweets in.
 
 # Procedure
 
