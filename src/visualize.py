@@ -16,7 +16,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
-font = fm.FontProperties(fname='../input/korea-corona-case-to-211227/malgun.ttf')
+font = fm.FontProperties(fname='/home/kupatel/proj/twitter_coronavirus/NaverNanumSquareNeo/TTF/NanumSquareNeo-aLt.ttf')
 import heapq
 import pandas as pd
 
@@ -48,11 +48,8 @@ x = args.input_path.split('.')[2].upper()
 key = args.key.split('#')[1]
 
 # build bar chart
-plt.bar([i for i in range(len(top_10))], num_tweets)i
-if key == 'coronavirus':
-    plt.suptitle(f'# of Tweets including "{key}" in 2020')
-else:
-    plt.suptitle(f'# of Tweets including "{key}" in 2020', fontproperties = font)
+plt.bar([i for i in range(len(top_10))], num_tweets)
+plt.suptitle(f'# of Tweets including "{key}" in 2020', fontproperties = font)
 plt.xlabel(f'{x}')
 plt.ylabel("COUNT")
 plt.xticks([i for i in range(len(top_10))], top_10)
