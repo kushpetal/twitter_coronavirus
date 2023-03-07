@@ -14,8 +14,9 @@ import json
 from collections import Counter,defaultdict
 import matplotlib
 matplotlib.use('Agg')
-matplotlib.rc('font', family='Arial')
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+font = fm.FontProperties(fname='../input/korea-corona-case-to-211227/malgun.ttf')
 import heapq
 import pandas as pd
 
@@ -39,13 +40,19 @@ top_10 = heapq.nlargest(10, hashmap, key=hashmap.get)
 num_tweets = []
 for i in top_10:
     num_tweets.append(hashmap[i])
+top_10.reverse()
+num_tweets.reverse()
 
-# build bar chart
+# data source
 x = args.input_path.split('.')[2].upper()
 key = args.key.split('#')[1]
 
-plt.bar([i for i in range(len(top_10))], num_tweets)
-plt.suptitle(f'# of Tweets including "{key}" in 2020')
+# build bar chart
+plt.bar([i for i in range(len(top_10))], num_tweets)i
+if key == 'coronavirus':
+    plt.suptitle(f'# of Tweets including "{key}" in 2020')
+else:
+    plt.suptitle(f'# of Tweets including "{key}" in 2020', fontproperties = font)
 plt.xlabel(f'{x}')
 plt.ylabel("COUNT")
 plt.xticks([i for i in range(len(top_10))], top_10)
